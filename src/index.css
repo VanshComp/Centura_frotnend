@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Clean backgrounds - Apple-inspired */
+    --background: 220 30% 6%;
+    --foreground: 0 0% 98%;
+
+    /* Card surfaces with subtle elevation */
+    --card: 220 25% 10%;
+    --card-foreground: 0 0% 98%;
+
+    /* Elevated popovers */
+    --popover: 220 25% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Refined blue - primary brand accent */
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Subtle secondary */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Ultra-subtle muted elements */
+    --muted: 220 15% 12%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Accent for highlights */
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive/fail states */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success/pass states */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning states */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Minimal borders */
+    --border: 220 20% 18%;
+    --input: 220 20% 16%;
+    --ring: 211 100% 50%;
+
+    /* Refined radius */
+    --radius: 0.75rem;
+
+    /* Sidebar styling */
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 20% 16%;
+    --sidebar-ring: 211 100% 50%;
+
+    /* Refined gradients */
+    --gradient-glow: linear-gradient(135deg, hsl(211 100% 50% / 0.08), hsl(211 100% 50% / 0.04));
+    --gradient-green: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 38%));
+    --gradient-card: linear-gradient(180deg, hsl(220 25% 11%), hsl(220 25% 9%));
+    
+    /* Softer shadows - Apple-like */
+    --shadow-glow: 0 0 50px hsl(211 100% 50% / 0.15);
+    --shadow-elevated: 0 8px 24px -6px hsl(220 30% 4% / 0.3);
+    --shadow-sm: 0 1px 2px 0 hsl(220 30% 4% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(220 30% 4% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(220 30% 4% / 0.2);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Editorial typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+
+  h1 {
+    @apply text-5xl md:text-7xl font-light leading-[1.1];
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-light leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-normal;
+  }
+
+  /* Glow effects */
+  .glow-effect {
+    position: relative;
+  }
+
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle at center, hsl(217 91% 60% / 0.15), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Smooth interactions - Apple-like */
+  button, a, input, textarea, select {
+    transition: var(--transition-fast);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* Refined scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  /* Focus states */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Numbers styling - Poppins font with tabular figures */
+  .font-numeric {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Hover scale effect */
+  .hover-scale {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* Smooth gradients */
+  .gradient-card {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.5) 100%);
+  }
+}
